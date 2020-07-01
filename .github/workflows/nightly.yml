@@ -21,6 +21,10 @@ jobs:
           java-version: 1.8
 
       - name: Build with Gradle
+        env:
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: ./gradlew build --stacktrace
       
       - name: Run Instrumentation tests
@@ -34,5 +38,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: app-release-NIGHTLY.apk
-          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          path: app/build/outputs/apk/release/app-release.apk
   

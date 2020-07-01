@@ -19,7 +19,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('release.jks')
+            storeFile file('release.keystore')
             storePassword "$System.env.RELEASE_KEYSTORE_PASSWORD"
             keyAlias "$System.env.RELEASE_KEY_ALIAS"
             keyPassword "$System.env.RELEASE_KEY_PASSWORD"

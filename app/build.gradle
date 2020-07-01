@@ -17,13 +17,23 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file('release.jks')
+            storePassword "$System.env.RELEASE_KEYSTORE_PASSWORD"
+            keyAlias "$System.env.RELEASE_KEY_ALIAS"
+            keyPassword "$System.env.RELEASE_KEY_PASSWORD"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
-    
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
